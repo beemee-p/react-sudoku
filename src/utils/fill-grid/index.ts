@@ -1,5 +1,6 @@
 import { GRID, NUMBERS } from 'typings'
-import { shuffle } from 'utils'
+import { shuffle, isInRow, isInCol } from 'utils'
+
 const gridExample: GRID = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -28,8 +29,19 @@ function fillGrid(grid: GRID) {
 
     if (grid[row][col] === 0) {
       shuffle(numbers)
-      // do stuff
-      // recursive things
+      for (let value of numbers) {
+        // is it not in grid row?
+        if (!isInRow({ grid, row, value })) {
+          // is it not in grid col?
+          if (!isInCol({ grid, col, value })) {
+          }
+        }
+
+        // is it not in the grid square?
+        grid[row][col] = value
+        //check grid if it's full, if yes -> stop n return value
+        // otherwise we run fullGrid(grid)
+      }
       break
     }
   }
