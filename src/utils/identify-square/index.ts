@@ -5,9 +5,9 @@ interface IInput {
   col: number
 }
 
-// A function that identifies and returns
-// the current square of a given sudoku grid at a row and col index
-// object with 9X9 sudoku Grid, row index and col index
+// A function that identifies
+// and returns the current square of a given sudoku grid at a row and col index
+// Input is a object with 9X9 sudoku Grid, row index and col index
 function identifyWorkingSquare({ col, grid, row }: IInput): SQUARE {
   const square = []
   if (row < 3) {

@@ -6,6 +6,6 @@ export type N = 0 | NUMBERS
 
 export type ROW = [N, N, N, N, N, N, N, N, N]
 
-export type SQUARE = []
+export type SQUARE = [SQUARE_ROW, SQUARE_ROW, SQUARE_ROW]
 
-expoprt type SQUARE_ROW = [N, N, N]
+export type SQUARE_ROW = [N, N, N]
