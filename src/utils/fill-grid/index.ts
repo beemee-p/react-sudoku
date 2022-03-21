@@ -1,18 +1,7 @@
 import { GRID, NUMBERS } from 'typings'
-import { shuffle, isInRow, isInCol, isInSquare, identifySquare } from 'utils'
+import { checkGrid, shuffle, isInRow, isInCol, isInSquare, identifySquare } from 'utils'
+// eslint-disable-next-line
 import identifyWorkingSquare from 'utils/identify-square'
-
-const gridExample: GRID = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
 
 const numbers: NUMBERS[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -31,17 +20,14 @@ function fillGrid(grid: GRID) {
     if (grid[row][col] === 0) {
       shuffle(numbers)
       for (let value of numbers) {
-        // is it not in grid row?
         if (!isInRow({ grid, row, value })) {
-          // is it not in grid col?
           if (!isInCol({ col, grid, value })) {
             const square = identifySquare({ col, grid, row })
-
-            if (!isInSquare({ square, value }))
-              // is it not in the grid square?
+            if (!isInSquare({ square, value })) {
               grid[row][col] = value
-            //check grid if it's full, if yes -> stop n return value
-            // otherwise we run fullGrid(grid)
+              if(checkGrid(grid)) return true
+              else if(fillGrid(grid)) return true
+            }
           }
         }
       }
